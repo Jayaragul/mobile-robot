@@ -1,0 +1,8 @@
+{
+  "mean_standing_ground_force_N": 16.58870999450933,
+  "model_weight_N": 16.58871,
+  "step_displacement_at_2ms_m": 0.09777332844902872,
+  "step_displacement_at_1ms_m": 0.09387119292909056,
+  "displacement_relative_difference": 0.039910020266645904,
+  "checks_passed": true
+}

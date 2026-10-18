@@ -1,0 +1,94 @@
+<mujoco model="phone_biped_concept">
+      <compiler angle="radian" autolimits="true" />
+      <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" iterations="80" />
+      <visual><global offwidth="960" offheight="640" /><headlight ambient=".4 .4 .4" diffuse=".6 .6 .6" /></visual>
+      <default><joint damping=".06" armature=".0003" /><geom contype="2" conaffinity="1" friction="0.8 .005 .0001" condim="3" solref=".008 1" solimp=".95 .99 .001" /></default>
+      <asset>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".20 .24 .23" rgb2=".24 .28 .26" width="256" height="256" />
+        <material name="floor" texture="grid" texrepeat="8 8" reflectance=".05" />
+        <material name="shell" rgba=".83 .86 .80 1" />
+        <material name="joint" rgba=".21 .28 .25 1" />
+        <material name="rubber" rgba=".10 .14 .12 1" />
+        <material name="phone" rgba=".12 .16 .15 1" />
+        <material name="screen" rgba=".38 .72 .54 1" />
+      </asset>
+      <worldbody>
+        <light pos=".4 -.5 1.5" dir="-.2 .2 -1" castshadow="true" />
+        <geom name="ground" type="plane" size="2 2 .1" material="floor" contype="1" conaffinity="2" />
+        <body name="pelvis" pos="0 0 .198">
+          <freejoint name="root" />
+          <geom name="battery" type="box" size=".037 .032 .018" mass=".34" material="joint" pos="0 0 -.012" />
+          <geom name="chassis" type="box" pos="0 0 .021" size=".033 .076 .007" mass=".18" material="shell" />
+          <geom name="electronics" type="box" pos="0 0 .033" size=".021 .035 .005" mass=".06" material="joint" />
+
+        <body name="left_yaw" pos="0 0.059 -.012">
+          <joint name="left_hip_yaw" axis="0 0 1" range="-.5 .5" />
+          <geom type="cylinder" size=".017 .006" mass=".025" material="joint" />
+          <body name="left_roll">
+            <joint name="left_hip_roll" axis="1 0 0" range="-.5 .5" />
+            <geom type="sphere" size=".014" mass=".025" material="joint" />
+            <body name="left_thigh">
+              <joint name="left_hip_pitch" axis="0 1 0" range="-1.2 1.2" />
+              <geom type="box" pos="0 0 -.035" size=".012 .013 .035" mass=".085" material="shell" />
+              <body name="left_shin" pos="0 0 -.070">
+                <joint name="left_knee" axis="0 1 0" range="-.05 1.8" />
+                <geom type="box" size=".018 .018 .012" mass=".035" material="joint" />
+                <geom type="box" pos="0 0 -.035" size=".011 .012 .035" mass=".060" material="shell" />
+                <body name="left_ankle_pitch" pos="0 0 -.070">
+                  <joint name="left_ankle_pitch" axis="0 1 0" range="-.9 .9" />
+                  <geom type="sphere" size=".013" mass=".025" material="joint" />
+                  <body name="left_foot">
+                    <joint name="left_ankle_roll" axis="1 0 0" range="-.5 .5" />
+                    <geom name="left_sole" type="box" pos="0 0 -.018" size=".060 .036 .006" mass=".095" material="rubber" friction="0.8 .005 .0001" />
+                    <geom type="box" pos="0 0 -.010" size=".055 .033 .002" mass=".019" material="shell" />
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        <body name="right_yaw" pos="0 -0.059 -.012">
+          <joint name="right_hip_yaw" axis="0 0 1" range="-.5 .5" />
+          <geom type="cylinder" size=".017 .006" mass=".025" material="joint" />
+          <body name="right_roll">
+            <joint name="right_hip_roll" axis="1 0 0" range="-.5 .5" />
+            <geom type="sphere" size=".014" mass=".025" material="joint" />
+            <body name="right_thigh">
+              <joint name="right_hip_pitch" axis="0 1 0" range="-1.2 1.2" />
+              <geom type="box" pos="0 0 -.035" size=".012 .013 .035" mass=".085" material="shell" />
+              <body name="right_shin" pos="0 0 -.070">
+                <joint name="right_knee" axis="0 1 0" range="-.05 1.8" />
+                <geom type="box" size=".018 .018 .012" mass=".035" material="joint" />
+                <geom type="box" pos="0 0 -.035" size=".011 .012 .035" mass=".060" material="shell" />
+                <body name="right_ankle_pitch" pos="0 0 -.070">
+                  <joint name="right_ankle_pitch" axis="0 1 0" range="-.9 .9" />
+                  <geom type="sphere" size=".013" mass=".025" material="joint" />
+                  <body name="right_foot">
+                    <joint name="right_ankle_roll" axis="1 0 0" range="-.5 .5" />
+                    <geom name="right_sole" type="box" pos="0 0 -.018" size=".060 .036 .006" mass=".095" material="rubber" friction="0.8 .005 .0001" />
+                    <geom type="box" pos="0 0 -.010" size=".055 .033 .002" mass=".019" material="shell" />
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+          <body name="neck" pos="0 0 .044">
+            <joint name="neck_yaw" axis="0 0 1" range="-.65 .65" />
+            <geom type="cylinder" size=".013 .008" mass=".045" material="joint" />
+            <body name="cradle" pos="0 0 .012">
+              <joint name="neck_tilt" axis="0 1 0" range="-.35 .35" />
+              <geom type="box" pos="-.008 0 .010" size=".004 .077 .036" mass=".045" material="shell" />
+              <body name="phone" pos="0 0 .010">
+                <geom name="phone_body" type="box" size=".0045 .073 .034" mass="0.25" material="phone" />
+                <geom name="screen" type="box" pos=".0048 0 0" size=".0003 .066 .030" mass=".001" material="screen" contype="0" conaffinity="0" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </worldbody>
+      <actuator><position name="left_hip_yaw" joint="left_hip_yaw" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="left_hip_roll" joint="left_hip_roll" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="left_hip_pitch" joint="left_hip_pitch" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="left_knee" joint="left_knee" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="left_ankle_pitch" joint="left_ankle_pitch" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="left_ankle_roll" joint="left_ankle_roll" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="right_hip_yaw" joint="right_hip_yaw" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="right_hip_roll" joint="right_hip_roll" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="right_hip_pitch" joint="right_hip_pitch" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="right_knee" joint="right_knee" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="right_ankle_pitch" joint="right_ankle_pitch" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" /><position name="right_ankle_roll" joint="right_ankle_roll" kp="22.0" kv="0.65" forcelimited="true" forcerange="-1.5 1.5" />
+        <position name="neck_yaw" joint="neck_yaw" kp="2" kv=".08" forcelimited="true" forcerange="-.25 .25" />
+        <position name="neck_tilt" joint="neck_tilt" kp="2" kv=".08" forcelimited="true" forcerange="-.25 .25" />
+      </actuator>
+    </mujoco>

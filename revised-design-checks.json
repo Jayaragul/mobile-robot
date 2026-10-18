@@ -1,0 +1,8 @@
+{
+  "matched_10cm_motor_work_reduction_fraction": 0.15030071848194948,
+  "matched_10cm_torque_squared_reduction_fraction": 0.19777629206265446,
+  "fine_timestep_motor_work_reduction_fraction": 0.13501930276348417,
+  "fine_timestep_lateral_push_fall_s": null,
+  "fine_timestep_lateral_push_max_tilt_deg": 18.067318846324667,
+  "passed": true
+}
