@@ -2,6 +2,28 @@
 
 A phone-carrying, two-legged robot concept with interactive anatomy, reproducible MuJoCo physics experiments, and an improved compact design.
 
+## Engineering simulation workbench (v0.2)
+
+The live lab now has a server-owned fixed-step physics loop, explicit operating states, an operator heartbeat watchdog, a latched simulation stop, run provenance exports, deterministic replay checks, and automated control/API tests.
+
+```sh
+python -m pip install -r requirements.txt
+python lab_server.py --port 8766
+```
+
+Open **http://127.0.0.1:8766** in a browser. Choose a preset, then Start. Pause before changing configuration. **Stop & latch** freezes this simulation; it is not a hardware emergency stop. To recover from a latched stop or fault, choose **Acknowledge**, then **Apply changes & reset physics**. Closing/disconnecting the operator tab for more than two seconds latches a fault while running. There is one simulation and one operator per server process.
+
+Download a complete run and check replay:
+
+```sh
+python replay_run.py robot-run.json
+python -m unittest discover -s tests -v
+```
+
+The run file contains source/model hashes, configuration, engine versions, disturbance inputs, event history, final state and telemetry. Windows and Linux test jobs are configured in GitHub Actions. Their remote results must be inspected before treating a release as checked on both platforms.
+
+See [software quality and limitations](SOFTWARE-QUALITY.md). This is an engineering development workbench, not certified industrial control software or validated real-robot control.
+
 ![Original and compact robot designs](revised-step-preview.png)
 
 ## Explore the design

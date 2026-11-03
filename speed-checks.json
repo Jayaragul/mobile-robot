@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "observed_fast_speed_ratio": 6.634512784022669,
+  "limited_motor_test": {
+    "config": {
+      "design": "v3",
+      "period": 0.5,
+      "amplitude": 1.5,
+      "phone_g": 250.0,
+      "friction": 0.8,
+      "terrain": "flat",
+      "torque": 1.5,
+      "no_load_speed": 4.0,
+      "feedback": 0.5,
+      "dt": 0.002
+    },
+    "metrics": {
+      "time_s": 8.001999999999342,
+      "travel_m": 0.9025102956373997,
+      "mean_speed_m_s": 0.12889321560089753,
+      "tilt_deg": 2.648244005462716,
+      "max_tilt_deg": 8.008307979063568,
+      "positive_work_J": 25.53468781069961,
+      "work_J_m": 28.292960129242275,
+      "torque_squared_Nm2s": 11.292926852692233,
+      "slip_path_m": 0.5939978342623657,
+      "slip_per_travel": 0.6581618371930633,
+      "single_support_fraction": 0.5568246716162193,
+      "peak_joint_speed_rad_s": 6.373752366585434,
+      "peak_torque_Nm": 1.4802548080714562,
+      "saturation_fraction": 0.9383209594517419,
+      "fall_s": null,
+      "left_N": 6.554513340161468,
+      "right_N": 3.986689952604038,
+      "mass_kg": 1.613
+    }
+  },
+  "note": "Finite synthetic tests; substantial slip remains. Mechanical effort does not estimate battery runtime."
+}
